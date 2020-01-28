@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="org.cqipc.edu.daoo.DetailDao">  
+	<select id="DetailAll" resultType="Detail">
+		 select * from Detail
+	</select>
+	<select id="SelectById" resultType="Detail">
+		select*from detail where d_id=#{d_id}
+	</select>
+	<insert id="add">
+		insert into detail values (null,#{a_id},#{d_name},#{d_money},#{d_date})
+	</insert>
+	<update id="modify">
+		update detail set a_id=#{a_id},d_name=#{d_name},d_money=#{d_money},
+		d_date=#{d_date} where d_id=#{d_id}
+	</update>
+	<delete id="remove">
+		delete from detail where d_id=#{d_id}
+	</delete>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="org.cqipc.edu.daoo.CustomerDao">  
+   <select id="selectBankAll" resultType="Bank">
+	select * from bank order by b_id
+	</select>	
+	<select id="selectCustomerAll" resultType="Customer">
+		 select c.*,b.b_id as "b_id.b_id",b.b_name as "b_id.b_name" from customer c,bank b where c.b_id=b.b_id
+	</select>
+	
+	<insert id="addCustomer">
+		insert into customer values(null,#{c_name},#{c_tel},#{c_addr},#{c_createDate},#{b_id.b_id})
+	</insert>
+	<select id="selectCustomerBid" resultType="Customer">
+		select c.*,b.b_id as "b_id.b_id",b.b_name as "b_id.b_name" from customer c,bank b where c.b_id=b.b_id
+		and c.b_id=#{b_id}
+	</select>
+	<select id="selectCustomerByname" resultType="Customer">
+		select c.*,b.b_id as "b_id.b_id",b.b_name as "b_id.b_name" from customer c,bank b where c.b_id=b.b_id
+		and c.c_name=#{c_name}
+	</select>
+	<select id="selectCustomerBank" resultType="Bank">
+		select b_id from bank where b_name=#{b_name}
+	</select>
+	<update id="modifyCustomer">
+		update customer set c_name=#{c_name},c_tel=#{c_tel},c_addr=#{c_addr},b_id=#{b_id} where c_id=#{c_id}
+	</update>
+
+</mapper>

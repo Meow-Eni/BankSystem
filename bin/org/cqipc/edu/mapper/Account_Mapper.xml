@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="org.cqipc.edu.daoo.AccountDao">  
+	<select id="AccountAll" resultType="Account">
+		select a.*,c.c_id as "cid.c_id",c.c_name as "cid.c_name",c.c_tel as "cid.c_tel",
+		 c.c_addr as"cid.c_addr",c.c_createDate as "cid.c_createDate",c.b_id as "cid.b_id"
+		 from account a,customer c where a.c_id=c.c_id
+	</select>
+	<insert id="addAccount">
+	insert into account  values(null,#{a_type},#{a_balance},#{cid.c_id})
+	</insert>
+	<select id="selectAccountcid" resultType="Account">
+		select a.*,c.c_id as "cid.c_id",c.c_name as "cid.c_name",c.c_tel as "cid.c_tel",
+		 c.c_addr as"cid.c_addr",c.c_createDate as "cid.c_createDate",c.b_id as "cid.b_id"
+		 from account a,customer c where a.c_id=c.c_id and c.c_id=#{c_id}
+	</select>
+	<select id="selectAccountid" resultType="double">
+		select a_balance from account where a_id=#{a_id}
+	</select>
+	<select id="selectAccountByname" resultType="Account">
+		select a.*,c.c_id as "cid.c_id",c.c_name as "cid.c_name",c.c_tel as "cid.c_tel",
+		 c.c_addr as"cid.c_addr",c.c_createDate as "cid.c_createDate",c.b_id as "cid.b_id"
+		 from account a,customer c where a.c_id=c.c_id and cid.c_id=#{c_id}
+	</select>
+	<select id="selectAccountBank" resultType="Account">
+		select a.*,c.c_id as "cid.c_id",c.c_name as "cid.c_name",c.c_tel as "cid.c_tel",
+		 c.c_addr as"cid.c_addr",c.c_createDate as "cid.c_createDate",c.b_id as "cid.b_id"
+		 from account a,customer c where a.c_id=c.c_id and cid.c_id=#{c_id}
+	</select>
+	<update id="modifyAccount">
+		update account set a_type=#{a_type},a_balance=#{a_balance} where a_id=#{a_id}
+	</update>
+	<update id="modifyBalance">
+		update account set a_balance=#{a_balance} where a_id=#{a_id}
+	</update>
+</mapper>

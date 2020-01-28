@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="org.cqipc.edu.daoo.BankDao">  
+
+	<select id="selectBankAll" resultType="Bank">
+	select * from bank order by b_id asc
+	</select>	
+	
+	<select id="selectBankById" resultType="Bank">
+	select * from bank where b_name=#{b_name}  
+	</select>
+	
+	<insert id="addBank">
+	
+	insert into bank values(null,#{b_name}) 
+	</insert>
+	
+	<update id="modifyBank">
+		update bank set b_name=#{b_name} where b_id=#{b_id}
+	</update>
+	
+</mapper>
